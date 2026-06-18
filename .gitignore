@@ -1,0 +1,7 @@
+node_modules/
+coverage/
+.nyc_output/
+PR_EVIDENCE.md
+PR_BODY.md
+*.log
+*.tmp

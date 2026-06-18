@@ -1,0 +1,43 @@
+{
+  "name": "pr-evidence-pack",
+  "version": "0.1.0",
+  "description": "Generate maintainer-friendly evidence packs for pull requests from local git metadata.",
+  "type": "module",
+  "bin": {
+    "pr-evidence-pack": "./bin/pr-evidence-pack.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "docs",
+    "examples",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cancaries/pr-evidence-pack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cancaries/pr-evidence-pack/issues"
+  },
+  "homepage": "https://github.com/cancaries/pr-evidence-pack#readme",
+  "scripts": {
+    "test": "node --test",
+    "check": "node --test && node ./bin/pr-evidence-pack.js --help"
+  },
+  "keywords": [
+    "pull-request",
+    "code-review",
+    "maintainers",
+    "open-source",
+    "git",
+    "cli"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
