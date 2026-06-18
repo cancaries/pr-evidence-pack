@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>pr-evidence-pack - Pull Request Evidence Packs</title>
+    <meta
+      name="description"
+      content="A local-first CLI that turns a branch diff into maintainer-friendly pull request evidence."
+    >
+    <meta property="og:title" content="pr-evidence-pack">
+    <meta
+      property="og:description"
+      content="Turn a branch diff into scope, tests, manual checks, risk, rollback, and reviewer focus."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./assets/hero-evidence-desk.png">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="pr-evidence-pack home">
+        <span class="brand-mark" aria-hidden="true">pe</span>
+        <span>pr-evidence-pack</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#output">Output</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#boundaries">Boundaries</a>
+        <a href="https://github.com/cancaries/pr-evidence-pack">GitHub</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <p class="eyebrow">Local-first review evidence for serious PRs</p>
+          <h1 id="hero-title">pr-evidence-pack</h1>
+          <p class="hero-copy">
+            Turn a branch diff into scope, tests, manual checks, risk, rollback,
+            and reviewer focus before a maintainer has to ask.
+          </p>
+          <div class="hero-actions" aria-label="Project actions">
+            <a class="button primary" href="https://github.com/cancaries/pr-evidence-pack">
+              View on GitHub
+            </a>
+            <a class="button secondary" href="#install">Use the CLI</a>
+          </div>
+          <div class="hero-proof" aria-label="Project status">
+            <span>Zero dependencies</span>
+            <span>No network calls</span>
+            <span>Plain Markdown output</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section intro" aria-labelledby="intro-title">
+        <div class="section-heading">
+          <p class="eyebrow">Built for the review gap</p>
+          <h2 id="intro-title">Summaries are common. Evidence is still missing.</h2>
+        </div>
+        <div class="three-up">
+          <article class="signal-card">
+            <h3>For contributors</h3>
+            <p>
+              Package the context reviewers usually need: what changed, why the
+              scope is tight, what was tested, and how to roll it back.
+            </p>
+          </article>
+          <article class="signal-card">
+            <h3>For maintainers</h3>
+            <p>
+              Review starts from concrete evidence instead of a confident but
+              thin PR description.
+            </p>
+          </article>
+          <article class="signal-card">
+            <h3>For agent-assisted work</h3>
+            <p>
+              Make AI-assisted changes easier to inspect without adding another
+              bot to the repository.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section command-section" id="install" aria-labelledby="install-title">
+        <div class="section-heading compact">
+          <p class="eyebrow">Run locally</p>
+          <h2 id="install-title">A CLI command that makes review evidence explicit.</h2>
+        </div>
+        <div class="command-layout">
+          <div class="mode-panel">
+            <div class="segmented" role="tablist" aria-label="Command examples">
+              <button class="segment active" type="button" data-mode="feature" aria-pressed="true">
+                Feature PR
+              </button>
+              <button class="segment" type="button" data-mode="docs" aria-pressed="false">
+                Docs PR
+              </button>
+              <button class="segment" type="button" data-mode="ci" aria-pressed="false">
+                CI gate
+              </button>
+            </div>
+            <pre class="terminal" id="command-example" tabindex="0"><code>git clone https://github.com/cancaries/pr-evidence-pack.git
+cd pr-evidence-pack
+node ./bin/pr-evidence-pack.js \
+  --base main \
+  --issue "#123" \
+  --scope "CLI evidence generation" \
+  --out-of-scope "Hosted review bot behavior" \
+  --test "node --test" \
+  --manual "Checked generated Markdown locally" \
+  --risk "Low: Markdown-only output" \
+  --rollback "Revert this PR"</code></pre>
+            <button class="copy-button" type="button" data-copy-target="command-example">
+              Copy command
+            </button>
+          </div>
+          <aside class="install-notes" aria-label="Install notes">
+            <h3>Current install path</h3>
+            <p>
+              Use the GitHub source install today. The npm command belongs after
+              an actual package release, so the README does not pretend it is
+              already published.
+            </p>
+            <p class="small-note">
+              Requires Node 20 or newer and a local git repository.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section output-section" id="output" aria-labelledby="output-title">
+        <div class="section-heading">
+          <p class="eyebrow">Generated output</p>
+          <h2 id="output-title">Markdown that a reviewer can actually use.</h2>
+        </div>
+        <div class="evidence-preview">
+          <div class="preview-meta" aria-label="Evidence categories">
+            <span>Scope</span>
+            <span>Evidence</span>
+            <span>Risk</span>
+            <span>Rollback</span>
+            <span>Reviewer focus</span>
+          </div>
+          <pre class="document-preview"><code># PR Evidence Pack
+
+## PR Snapshot
+- Branch: feature/evidence-output
+- Base: main
+- Working tree: clean
+
+## Scope
+### In Scope
+- Add first-class scope and out-of-scope evidence fields
+- Classify repository metadata files as config
+
+### Out of Scope
+- Executing user supplied commands
+- Posting comments to remote forges
+
+## Evidence
+- Linked issue or ticket: local product-quality hardening
+- Tests run: node --test
+- Manual verification: Reviewed generated Markdown locally
+
+## Risk and Rollback
+- Risk: Low: output structure and warning logic only
+- Rollback: Revert the PR
+
+## Missing Evidence
+- No missing evidence detected.</code></pre>
+        </div>
+      </section>
+
+      <section class="section workflow" id="workflow" aria-labelledby="workflow-title">
+        <div class="section-heading compact">
+          <p class="eyebrow">Workflow</p>
+          <h2 id="workflow-title">Use it before a PR exists.</h2>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="step-index">01</span>
+            <h3>Compare the branch</h3>
+            <p>Read local git metadata, changed files, commits, and diff stats.</p>
+          </article>
+          <article class="step">
+            <span class="step-index">02</span>
+            <h3>Add human evidence</h3>
+            <p>Record the tests, manual checks, risk, rollback, and explicit non-goals.</p>
+          </article>
+          <article class="step">
+            <span class="step-index">03</span>
+            <h3>Submit with context</h3>
+            <p>Paste the evidence pack or PR body draft where reviewers will see it.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section boundaries" id="boundaries" aria-labelledby="boundaries-title">
+        <div class="section-heading">
+          <p class="eyebrow">Safety boundary</p>
+          <h2 id="boundaries-title">Narrow by design.</h2>
+        </div>
+        <div class="boundary-grid">
+          <article>
+            <h3>It does</h3>
+            <ul>
+              <li>Read git metadata locally.</li>
+              <li>Generate Markdown evidence.</li>
+              <li>Warn when review evidence is missing.</li>
+              <li>Work before any hosted PR exists.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>It does not</h3>
+            <ul>
+              <li>Run user-supplied commands.</li>
+              <li>Send repository data to a service.</li>
+              <li>Post comments automatically.</li>
+              <li>Claim that a PR is correct.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>pr-evidence-pack</span>
+      <a href="https://github.com/cancaries/pr-evidence-pack">GitHub repository</a>
+    </footer>
+
+    <script src="./site.js"></script>
+  </body>
+</html>

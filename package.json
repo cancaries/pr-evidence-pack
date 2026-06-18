@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/cancaries/pr-evidence-pack/issues"
   },
-  "homepage": "https://github.com/cancaries/pr-evidence-pack#readme",
+  "homepage": "https://cancaries.github.io/pr-evidence-pack/",
   "scripts": {
     "test": "node --test",
     "check": "node --test && node ./bin/pr-evidence-pack.js --help"

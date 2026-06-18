@@ -3,6 +3,9 @@
 Generate a maintainer-friendly evidence pack for a pull request from local git
 metadata.
 
+[Project site](https://cancaries.github.io/pr-evidence-pack/) /
+[Repository](https://github.com/cancaries/pr-evidence-pack)
+
 This tool is for contributors who want reviewers to trust the work faster. It
 does not review code, score code quality, or pretend to know whether a change is
 correct. Instead, it packages the evidence a maintainer usually has to ask for:
