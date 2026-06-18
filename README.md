@@ -25,14 +25,18 @@ confidence or more prose. The missing layer is reviewable evidence.
 
 ## Install
 
+Current source install:
+
 ```bash
-npm install -g pr-evidence-pack
+git clone https://github.com/cancaries/pr-evidence-pack.git
+cd pr-evidence-pack
+node ./bin/pr-evidence-pack.js --help
 ```
 
-During local development:
+After an npm release is published:
 
 ```bash
-node ./bin/pr-evidence-pack.js --help
+npm install -g pr-evidence-pack
 ```
 
 ## Usage
