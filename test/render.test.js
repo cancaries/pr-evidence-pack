@@ -20,6 +20,8 @@ test("renders evidence and PR body markdown", () => {
     {
       title: "Add CLI",
       issue: "#7",
+      scope: ["CLI rendering path"],
+      outOfScope: ["Executing test commands"],
       tests: ["node --test"],
       manualChecks: ["Ran dry-run output"],
       reproduction: ["Run the command on a feature branch"],
@@ -33,6 +35,7 @@ test("renders evidence and PR body markdown", () => {
 
   assert.match(evidence.evidenceMarkdown, /# PR Evidence Pack/);
   assert.match(evidence.evidenceMarkdown, /Linked issue or ticket: #7/);
+  assert.match(evidence.evidenceMarkdown, /CLI rendering path/);
   assert.match(evidence.evidenceMarkdown, /node --test/);
   assert.match(evidence.prBodyMarkdown, /## Summary/);
   assert.equal(evidence.warnings.length, 0);

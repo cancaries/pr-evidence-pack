@@ -51,6 +51,8 @@ To also create a concise PR body draft:
 pr-evidence-pack \
   --base main \
   --issue "#123" \
+  --scope "CLI evidence generation" \
+  --out-of-scope "Running user test commands automatically" \
   --test "npm test" \
   --manual "Checked the CLI output on a sample repository" \
   --risk "Low: Markdown-only output" \
@@ -78,6 +80,7 @@ The evidence pack includes:
 - change overview: files, additions, deletions, binary files;
 - changed files grouped by source, tests, docs, config, assets, and other;
 - linked issue or ticket;
+- in-scope notes and explicit non-goals;
 - reproduction notes;
 - tests run;
 - manual verification;
@@ -97,6 +100,8 @@ See [examples/PR_EVIDENCE.example.md](examples/PR_EVIDENCE.example.md).
 --body-output <path>      Also write a concise PR body draft.
 --title <text>            PR title or working title.
 --issue <value>           Linked issue, ticket, or URL.
+--scope <note>            In-scope note. Can be repeated.
+--out-of-scope <note>     Explicit non-goal. Can be repeated.
 --test <command>          Test command that was run. Can be repeated.
 --manual <note>           Manual verification note. Can be repeated.
 --reproduction <step>     Reproduction step. Can be repeated.

@@ -7,6 +7,7 @@ test("classifies common repository files", () => {
   assert.equal(classifyFile("test/cli.test.js"), "tests");
   assert.equal(classifyFile("docs/usage.md"), "docs");
   assert.equal(classifyFile(".github/workflows/ci.yml"), "config");
+  assert.equal(classifyFile(".gitattributes"), "config");
   assert.equal(classifyFile("assets/logo.png"), "assets");
 });
 
@@ -33,11 +34,20 @@ test("analysis groups files and calculates churn", () => {
 test("warnings call out missing evidence", () => {
   const warnings = buildWarnings(
     { isDirty: true },
-    { issue: null, tests: [], manualChecks: [], risk: null, rollback: null },
+    {
+      issue: null,
+      scope: [],
+      outOfScope: [],
+      tests: [],
+      manualChecks: [],
+      risk: null,
+      rollback: null
+    },
     { totalFiles: 1, touchedTests: false }
   );
 
   assert.ok(warnings.some((warning) => warning.includes("No linked issue")));
+  assert.ok(warnings.some((warning) => warning.includes("No explicit in-scope")));
   assert.ok(warnings.some((warning) => warning.includes("working tree")));
 });
 

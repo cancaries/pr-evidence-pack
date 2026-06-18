@@ -104,6 +104,11 @@ export function classifyFile(file) {
 
   if (
     normalized.startsWith(".github/") ||
+    normalized === ".editorconfig" ||
+    normalized === ".gitattributes" ||
+    normalized === ".gitignore" ||
+    normalized === ".npmrc" ||
+    normalized === ".nvmrc" ||
     normalized.endsWith("package.json") ||
     normalized.endsWith("package-lock.json") ||
     normalized.endsWith("pnpm-lock.yaml") ||
@@ -133,6 +138,14 @@ export function buildWarnings(repository, options, analysis) {
 
   if (!options.issue) {
     warnings.push("No linked issue, ticket, or decision record was provided.");
+  }
+
+  if (options.scope.length === 0) {
+    warnings.push("No explicit in-scope note was provided.");
+  }
+
+  if (options.outOfScope.length === 0) {
+    warnings.push("No explicit out-of-scope note was provided.");
   }
 
   if (options.tests.length === 0) {

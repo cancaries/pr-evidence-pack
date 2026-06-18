@@ -27,6 +27,8 @@ Using `pr-evidence-pack` on this repository is encouraged:
 ```bash
 node ./bin/pr-evidence-pack.js \
   --base main \
+  --scope "Focused CLI or documentation change" \
+  --out-of-scope "Hosted service behavior" \
   --test "node --test" \
   --manual "Reviewed generated Markdown output" \
   --risk "Low: local CLI-only change" \

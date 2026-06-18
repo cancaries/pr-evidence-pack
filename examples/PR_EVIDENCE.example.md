@@ -34,8 +34,13 @@ Generated: 2026-06-18T00:00:00.000Z
 
 ## Scope
 
-- In scope: derived from the files listed above.
-- Out of scope: TODO before submitting.
+### In Scope
+
+- Evidence option parsing and Markdown rendering.
+
+### Out of Scope
+
+- Running user-supplied test commands automatically.
 
 ## Evidence
 

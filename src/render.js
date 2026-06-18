@@ -63,8 +63,13 @@ function renderEvidenceMarkdown(repository, options, analysis, warnings, reviewe
 
   lines.push("## Scope");
   lines.push("");
-  lines.push("- In scope: derived from the files listed above.");
-  lines.push("- Out of scope: TODO before submitting.");
+  lines.push("### In Scope");
+  lines.push("");
+  pushListOrPlaceholder(lines, options.scope, inferredScope(analysis));
+  lines.push("");
+  lines.push("### Out of Scope");
+  lines.push("");
+  pushListOrPlaceholder(lines, options.outOfScope, "Not provided");
   lines.push("");
   lines.push("## Evidence");
   lines.push("");
@@ -126,6 +131,11 @@ function renderPrBodyMarkdown(repository, options, analysis, warnings, reviewerF
   lines.push(`- Changed ${analysis.totalFiles} file(s) against \`${repository.base}\`.`);
   lines.push(`- Range: \`${repository.range}\`.`);
   lines.push("");
+  lines.push("## Scope");
+  lines.push("");
+  lines.push(`- In scope: ${inlineList(options.scope, inferredScope(analysis))}`);
+  lines.push(`- Out of scope: ${inlineList(options.outOfScope, "Not provided")}`);
+  lines.push("");
   lines.push("## Evidence");
   lines.push("");
   lines.push(`- Issue: ${options.issue || "Not provided"}`);
@@ -161,6 +171,19 @@ function pushListOrPlaceholder(lines, values, placeholder) {
   for (const value of values) {
     lines.push(`- ${value}`);
   }
+}
+
+function inlineList(values, placeholder) {
+  return values && values.length > 0 ? values.join("; ") : placeholder;
+}
+
+function inferredScope(analysis) {
+  if (analysis.totalFiles === 0) {
+    return "No changed files detected.";
+  }
+
+  const groups = analysis.groups.map(([group]) => group).join(", ");
+  return `Files changed in: ${groups}.`;
 }
 
 function formatStatus(status) {

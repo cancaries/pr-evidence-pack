@@ -13,6 +13,10 @@ test("parses repeated evidence options", () => {
     "Checked output",
     "--reproduction",
     "Open the fixture",
+    "--scope",
+    "Option parsing",
+    "--out-of-scope",
+    "Executing commands",
     "--body-output",
     "PR_BODY.md",
     "--fail-on-warnings"
@@ -22,6 +26,8 @@ test("parses repeated evidence options", () => {
   assert.deepEqual(options.tests, ["node --test", "lint"]);
   assert.deepEqual(options.manualChecks, ["Checked output"]);
   assert.deepEqual(options.reproduction, ["Open the fixture"]);
+  assert.deepEqual(options.scope, ["Option parsing"]);
+  assert.deepEqual(options.outOfScope, ["Executing commands"]);
   assert.equal(options.bodyOutput, "PR_BODY.md");
   assert.equal(options.failOnWarnings, true);
 });

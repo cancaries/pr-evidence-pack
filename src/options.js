@@ -1,4 +1,4 @@
-const repeatedOptions = new Set(["test", "manual", "reproduction"]);
+const repeatedOptions = new Set(["test", "manual", "reproduction", "scope", "outofscope"]);
 
 export function parseArgs(argv) {
   const options = {
@@ -7,6 +7,8 @@ export function parseArgs(argv) {
     bodyOutput: null,
     title: null,
     issue: null,
+    scope: [],
+    outOfScope: [],
     tests: [],
     manualChecks: [],
     reproduction: [],
@@ -94,6 +96,8 @@ function isKnownValueOption(name) {
     "prbody",
     "title",
     "issue",
+    "scope",
+    "outofscope",
     "test",
     "tests",
     "manual",
@@ -112,8 +116,12 @@ function applyValueOption(options, name, value) {
       options.tests.push(value);
     } else if (name === "manual") {
       options.manualChecks.push(value);
-    } else {
+    } else if (name === "reproduction") {
       options.reproduction.push(value);
+    } else if (name === "scope") {
+      options.scope.push(value);
+    } else {
+      options.outOfScope.push(value);
     }
     return;
   }
@@ -132,6 +140,10 @@ function applyValueOption(options, name, value) {
     options.title = value;
   } else if (name === "issue") {
     options.issue = value;
+  } else if (name === "scope") {
+    options.scope.push(value);
+  } else if (name === "outofscope") {
+    options.outOfScope.push(value);
   } else if (name === "risk") {
     options.risk = value;
   } else if (name === "rollback") {
@@ -165,6 +177,8 @@ Options:
   --body-output <path>      Also write a concise PR body draft.
   --title <text>            PR title or working title.
   --issue <value>           Linked issue, ticket, or URL.
+  --scope <note>            In-scope note. Can be repeated.
+  --out-of-scope <note>     Explicit non-goal. Can be repeated.
   --test <command>          Test command that was run. Can be repeated.
   --manual <note>           Manual verification note. Can be repeated.
   --reproduction <step>     Reproduction step. Can be repeated.
@@ -183,7 +197,7 @@ Environment:
   PR_EVIDENCE_GIT          Optional path to the git executable.
 
 Examples:
-  pr-evidence-pack --base main --test "npm test" --issue "#123"
-  pr-evidence-pack --dry-run --manual "Verified in Chrome"
+  pr-evidence-pack --base main --issue "#123" --scope "Parser fix" --test "npm test"
+  pr-evidence-pack --dry-run --scope "Docs update" --out-of-scope "Runtime behavior"
 `;
 }
